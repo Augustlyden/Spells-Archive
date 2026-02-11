@@ -19,8 +19,11 @@ export interface SpellDetailsOverview extends SpellBookOverview{
     school: APIReference;
 }
 
+const wizardLoader = document.getElementById('loading-wizard-gif-container')
+
 export async function fetchSpellBook(): Promise<SpellBookOverview[]> {
     try {
+        wizardLoader?.classList.toggle('hidden')
         const response = await fetch('https://www.dnd5eapi.co/api/2014/spells');
         if (!response.ok) {
             throw new Error('Error: ' + response.statusText)
@@ -32,14 +35,16 @@ export async function fetchSpellBook(): Promise<SpellBookOverview[]> {
             console.error('Error fetching spell book:', error);
             document.body.innerHTML = `
             <div class="error-container">
-                <img class="wizard-gif" src="img/loading-screen-wizard.gif" alt="reading wizard in candle light">
+                <img class="error-wizard-gif" src="img/loading-screen-wizard.gif" alt="reading wizard in candle light">
                 <p class="error-message">Sorry, we couldn't load the archive at this time. <br> ${error.message}. <br>
                 We are working on fixing the issue.</p>
             </div>
             `;
         }
         throw error;
-    } 
+    } finally {
+        wizardLoader?.classList.toggle('hidden')
+    }
 }
 
 export async function fetchSpellDetails(): Promise<SpellDetailsOverview> {
@@ -57,7 +62,7 @@ export async function fetchSpellDetails(): Promise<SpellDetailsOverview> {
             console.error('Error fetching spell details:', error);
             document.body.innerHTML = `
             <div class="error-container">
-                <img class="wizard-gif" src="img/loading-screen-wizard.gif" alt="reading wizard in candle light">
+                <img class="error-wizard-gif" src="img/loading-screen-wizard.gif" alt="reading wizard in candle light">
                 <p class="error-message">Sorry, we couldn't load the archive at this time. <br> ${error.message}. <br>
                 We are working on fixing the issue.</p>
             </div>

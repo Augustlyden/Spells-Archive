@@ -161,19 +161,40 @@ span {
     margin-top: 50px;
 }
 
-.error-message {
-    text-align: center;
+.error-message,
+#loading-text {
     color: var(--primary-color);
     font-size: larger;
     font-weight: bold;
+}
+
+.error-message {
     text-align: center;
 }
 
-.wizard-gif {
+.error-wizard-gif,
+#loading-wizard-gif {
     width: 300px;
     height: auto;
+}
+
+#loading-wizard-gif {
+    position: relative;
+}
+
+#loading-text {
+    position: absolute;
+    top: 250px;
+    left: 210px;
+}
+
+.error-wizard-gif {
     border: 2px solid var(--primary-color);
     border-radius: var(--border-radius);
+}
+
+.hidden {
+    display: none;
 }
 
 
