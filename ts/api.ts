@@ -19,6 +19,12 @@ export interface SpellDetailsOverview extends SpellBookOverview{
     school: APIReference;
 }
 
+const userFriendlyErrors = {
+    404: "We couldn't find what you were looking for. We are working on fixing the issue.",
+    500: "There seems to be a temporary error on our end. Please try again later.",
+    network_error: "Failed to connect to the source. Check your network connection and try again.",
+}
+
 const wizardLoader = document.getElementById('loading-wizard-gif-container')
 
 export async function fetchSpellBook(): Promise<SpellBookOverview[]> {
@@ -26,18 +32,21 @@ export async function fetchSpellBook(): Promise<SpellBookOverview[]> {
         wizardLoader?.classList.toggle('hidden')
         const response = await fetch('https://www.dnd5eapi.co/api/2014/spells');
         if (!response.ok) {
-            throw new Error('Error: ' + response.statusText)
+            const message = userFriendlyErrors[response.status as keyof typeof userFriendlyErrors] || `An unexpected error occurred.`;
+            throw new Error(message);
         } 
         const spellData = await response.json();   
         return spellData.results;
     } catch (error) {
         if (error instanceof Error) {
-            console.error('Error fetching spell book:', error);
+            console.error('Error fetching spell book:', error.message);
+            const finalMessage = error.name === 'TypeError' 
+                ? userFriendlyErrors.network_error
+                : error.message;
             document.body.innerHTML = `
             <div class="error-container">
                 <img class="error-wizard-gif" src="img/loading-screen-wizard.gif" alt="reading wizard in candle light">
-                <p class="error-message">Sorry, we couldn't load the archive at this time. <br> ${error.message}. <br>
-                We are working on fixing the issue.</p>
+                <p class="error-message">Sorry, we couldn't summon the archive at this time. <br> ${finalMessage}</p>
             </div>
             `;
         }
@@ -53,18 +62,21 @@ export async function fetchSpellDetails(): Promise<SpellDetailsOverview> {
         const spellIndex = urlParams.get('index');
         const response = await fetch(`https://www.dnd5eapi.co/api/2014/spells/${spellIndex}`);
         if (!response.ok) {
-            throw new Error('Error: ' + response.statusText)
+            const message = userFriendlyErrors[response.status as keyof typeof userFriendlyErrors] || `An unexpected error occurred.`;
+            throw new Error(message);
         }
         const spellDetails = await response.json();
         return spellDetails;
     } catch (error) {
         if (error instanceof Error) {
             console.error('Error fetching spell details:', error);
+            const finalMessage = error.name === 'TypeError' 
+                ? userFriendlyErrors.network_error
+                : error.message;
             document.body.innerHTML = `
             <div class="error-container">
                 <img class="error-wizard-gif" src="img/loading-screen-wizard.gif" alt="reading wizard in candle light">
-                <p class="error-message">Sorry, we couldn't load the archive at this time. <br> ${error.message}. <br>
-                We are working on fixing the issue.</p>
+                <p class="error-message">Sorry, we couldn't load the archive at this time. <br> ${finalMessage}</p>
             </div>
             `;
         }

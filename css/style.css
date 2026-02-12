@@ -8,12 +8,14 @@
     --background-color: #f8f4ed;
     --text-color: #666666;
     --border-radius: 4px;
+    scrollbar-color: var(--primary-color) var(--secondary-color);
 }
 
 body {
     background-color: var(--background-color);
     margin: 0;
     padding: 20px;
+    font-family: "Amarante", serif;
 }
 
 h1, h2 {
@@ -22,8 +24,12 @@ h1, h2 {
 }
 
 h1 {
-    border-bottom: 2px solid var(--primary-color);
+    border-bottom: 3px solid var(--primary-color);
     padding-bottom: 10px;
+}
+
+h2 {
+    border-bottom: 2px solid var(--primary-color);
 }
 
 #search-container {
@@ -42,9 +48,16 @@ h1 {
 
 #search-input:focus {
     outline: none;
-    background-color: whitesmoke;
+    border: 2px solid var(--primary-color);
 }
 
+#search-input::placeholder {
+    font-family: "Amarante", serif;
+}
+
+#search-input:focus::placeholder {
+    color: var(--primary-color);
+}
 
 #search-button {
     background-color: var(--primary-color);
@@ -73,11 +86,13 @@ a {
 .spell-card {
     background-color: var(--secondary-color);  
     border-radius: var(--border-radius);
+    transition-duration: 0.2s;
 }
 
 .spell-card:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 8px #0000001a;
+    box-shadow: 0 4px 8px var(--text-color); /* #0000001a */
+    transition-duration: 0.2s;
 }
 
 .spell-card h2,
@@ -174,7 +189,7 @@ span {
 
 .error-wizard-gif,
 #loading-wizard-gif {
-    width: 300px;
+    width: 250px;
     height: auto;
 }
 
@@ -197,6 +212,32 @@ span {
     display: none;
 }
 
+#up-button {
+    position: fixed;
+    display: none;
+    border: none;
+    border-radius: 2px;
+    bottom: 30px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 25px;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    transition-duration: 0.5s;
+}
+
+#up-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px var(--text-color);
+    transition-duration: 0.5s;
+}
+
+@media screen and (min-width: 700px) {
+    .error-wizard-gif,
+    #loading-wizard-gif {
+        width: 300px;
+    }
+}
 
 @media screen and (min-width: 900px) {
     .spell-card-details {

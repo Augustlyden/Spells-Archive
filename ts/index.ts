@@ -35,6 +35,29 @@ function displaySpells(spellBook: SpellBookOverview[]) {
     }); 
 }
 
-const search = document.getElementById('search-input')
-search?.addEventListener('input', searchSpell)
-search?.addEventListener('input', saveSearchInput)
+const search = document.getElementById('search-input');
+search?.addEventListener('input', searchSpell);
+search?.addEventListener('input', saveSearchInput);
+
+const upButton = document.getElementById('up-button');
+
+upButton?.addEventListener('click', topFunction)
+window.onscroll = function() {scrollFunction()}
+
+function scrollFunction() {
+    if (!upButton) {
+        console.log("up-button element not found");
+        return;
+    }
+
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        upButton.style.display = "block";
+    } else {
+        upButton.style.display = "none";
+    }
+}
+
+function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+}

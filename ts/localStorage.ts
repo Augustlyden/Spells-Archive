@@ -1,7 +1,6 @@
-const search = document.getElementById('search-input')
+const search = (document.getElementById('search-input') as HTMLInputElement)
 
-export function saveSearchInput(e) {
-    e.preventDefault()
+export function saveSearchInput() {
     localStorage.setItem('searchInput',search.value)
 }
 
