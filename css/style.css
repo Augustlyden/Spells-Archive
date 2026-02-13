@@ -28,14 +28,16 @@ h1 {
     border-bottom: 3px solid var(--primary-color);
 } 
 
-#spell-title {
-    border-bottom: 2px solid var(--primary-color);
-} 
-
 #search-container {
     display: flex;
     justify-content: center;
     margin-bottom: 30px;
+}
+
+label {
+    color: var(--primary-color);
+    margin: 10px 5px;
+    font-size: smaller;
 }
 
 #search-input {
@@ -91,7 +93,7 @@ a {
 
 .spell-card:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 8px var(--text-color); /* #0000001a */
+    box-shadow: 0 4px 8px var(--text-color);
     transition-duration: 0.2s;
 }
 
@@ -130,6 +132,9 @@ a {
     flex-direction: column;
     gap: 20px;
 }
+
+/* Promp 1: Make the dd and dt elements in the dl with class spell-details align with each other using grid
+and a gap of 40px */
 
 .spell-details {
     background-color: var(--secondary-color);
