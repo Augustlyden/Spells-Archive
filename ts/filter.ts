@@ -10,8 +10,8 @@ export function searchSpell() {
     };
 
     for (let i = 0; i < card.length; i++ ) {
-        const textValue = card[i]?.innerText || card[i]?.textContent
-        if (textValue.toUpperCase().indexOf(userSearch) > -1 ) {
+        const textValue: string = card[i]?.innerText || card[i]?.textContent
+        if (textValue.toUpperCase().indexOf(userSearch) > -1) {
             card[i].style.display = "";
         } else {
             card[i].style.display = "none";

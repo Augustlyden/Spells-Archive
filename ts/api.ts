@@ -17,6 +17,7 @@ export interface SpellDetailsOverview extends SpellBookOverview{
     higher_level?: string[];
     material?: string;
     school: APIReference;
+    concentration: boolean;
 }
 
 const userFriendlyErrors = {

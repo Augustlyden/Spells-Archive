@@ -18,19 +18,19 @@ body {
     font-family: "Amarante", serif;
 }
 
-h1, h2 {
+h1, #spell-title {
     text-align: center;
     color: var(--primary-color);
+    padding-bottom: 10px;
 }
 
 h1 {
     border-bottom: 3px solid var(--primary-color);
-    padding-bottom: 10px;
-}
+} 
 
-h2 {
+#spell-title {
     border-bottom: 2px solid var(--primary-color);
-}
+} 
 
 #search-container {
     display: flex;
