@@ -5,9 +5,9 @@ export function searchSpell() {
     let card = spellPageContent?.getElementsByTagName('a');
 
     Array.from(card as HTMLCollectionOf<HTMLElement>).forEach((cardValue) => {
-        const textValue = (cardValue.innerText || cardValue.textContent) ?? "Not found."
+        const textValue = (cardValue.innerText || cardValue.textContent) ?? "Not found.";
         cardValue.style.display = textValue.toUpperCase().includes(userSearch)
             ? ""
-            : "none"
+            : "none";
     });
-}
+};

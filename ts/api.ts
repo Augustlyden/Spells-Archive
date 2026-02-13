@@ -2,13 +2,13 @@ export interface SpellBookOverview {
     index: string;
     name: string;
     level: number;
-}
+};
 
 export interface APIReference {
     name: string;
-}
+};
 
-export interface SpellDetailsOverview extends SpellBookOverview{
+export interface SpellDetailsOverview extends SpellBookOverview {
     desc: string[];
     range: string;
     components: string[];
@@ -18,15 +18,21 @@ export interface SpellDetailsOverview extends SpellBookOverview{
     material?: string;
     school: APIReference;
     concentration: boolean;
-}
+};
 
-const userFriendlyErrors = {
+interface ErrorMessages {
+    404: string;
+    500: string;
+    networkError: string;
+};
+
+const userFriendlyErrors: ErrorMessages = {
     404: "We couldn't find what you were looking for. We are working on fixing the issue.",
     500: "There seems to be a temporary error on our end. Please try again later.",
     networkError: "Failed to connect to the source. Check your network connection and try again.",
-}
+};
 
-const wizardLoader = document.getElementById('loading-wizard-gif-container')
+const wizardLoader = document.getElementById('loading-wizard-gif-container');
 
 export async function fetchSpellBook(): Promise<SpellBookOverview[]> {
     try {
@@ -50,12 +56,12 @@ export async function fetchSpellBook(): Promise<SpellBookOverview[]> {
                 <p class="error-message">Sorry, we couldn't summon the archive at this time. <br> ${finalMessage}</p>
             </div>
             `;
-        }
+        };
         throw error;
     } finally {
         wizardLoader?.classList.toggle('hidden')
-    }
-}
+    };
+};
 
 export async function fetchSpellDetails(): Promise<SpellDetailsOverview> {
     try {
@@ -65,7 +71,7 @@ export async function fetchSpellDetails(): Promise<SpellDetailsOverview> {
         if (!response.ok) {
             const message = userFriendlyErrors[response.status as keyof typeof userFriendlyErrors] || `An unexpected error occurred.`;
             throw new Error(message);
-        }
+        };
         const spellDetails = await response.json();
         return spellDetails;
     } catch (error) {
@@ -80,7 +86,7 @@ export async function fetchSpellDetails(): Promise<SpellDetailsOverview> {
                 <p class="error-message">Sorry, we couldn't load the archive at this time. <br> ${finalMessage}</p>
             </div>
             `;
-        }
+        };
         throw error;
-    }
-}
+    };
+};

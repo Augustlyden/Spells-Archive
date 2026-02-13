@@ -2,8 +2,8 @@ import {fetchSpellDetails, type SpellDetailsOverview} from './api.js';
 
 async function loadSpellDetails() {
     const spellDetails = await fetchSpellDetails();
-    displaySpellDetails(spellDetails)
-}
+    displaySpellDetails(spellDetails);
+};
 
 document.addEventListener('DOMContentLoaded', loadSpellDetails)
 
@@ -14,21 +14,21 @@ class spellDetailsExeptions {
         return this.data.concentration === true
             ? "Yes"
             : "No"
-    }
+    };
 
     get material(): string {
         return this.data.material ?? "No materials needed"
-    }
+    };
 
     get higherLevel(): string {
         return this.data.higher_level?.length === 0 
             ? ""
             : `<p><span>Casting at higher levels</span> <br>${this.data.higher_level}</p>`
-    }
+    };
 
-    get components() {return this.data.components.join(" ")}
-    get desc() {return this.data.desc.join(" ")}
-    }
+    get components() {return this.data.components.join(" ")};
+    get desc() {return this.data.desc.join(" ")};
+    };
 
 
 async function displaySpellDetails(spellDetails: SpellDetailsOverview) {

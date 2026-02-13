@@ -7,11 +7,11 @@ async function loadSpellBook() {
     const spellBook = await fetchSpellBook();
     displaySpells(spellBook);
 
-    retrieveSearchInput()
+    retrieveSearchInput();
 
-    searchSpell()
-}
-document.addEventListener('DOMContentLoaded', loadSpellBook)
+    searchSpell();
+};
+document.addEventListener('DOMContentLoaded', loadSpellBook);
 
 function displaySpells(spellBook: SpellBookOverview[]) {
     let spellPageContent = document.getElementById('spell-page-content');
@@ -21,8 +21,6 @@ function displaySpells(spellBook: SpellBookOverview[]) {
         return;
     }
 
-    console.log(spellBook)
-
     spellBook.forEach(spell => {
         spellPageContent.innerHTML += `
         <a data-id="${spell.name}" href="spell.html?index=${spell.index}">
@@ -31,9 +29,9 @@ function displaySpells(spellBook: SpellBookOverview[]) {
                 <p>Level ${spell.level}</p> 
             </article>
         </a> 
-        `
+        `;
     }); 
-}
+};
 
 const search = document.getElementById('search-input');
 search?.addEventListener('input', searchSpell);
@@ -41,8 +39,8 @@ search?.addEventListener('input', saveSearchInput);
 
 const upButton = document.getElementById('up-button');
 
-upButton?.addEventListener('click', topFunction)
-window.onscroll = function() {scrollFunction()}
+upButton?.addEventListener('click', topFunction);
+window.onscroll = function() {scrollFunction()};
 
 function scrollFunction() {
     if (!upButton) {
