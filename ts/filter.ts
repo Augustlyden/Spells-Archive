@@ -4,17 +4,10 @@ export function searchSpell() {
     let spellPageContent = document.getElementById('spell-page-content');
     let card = spellPageContent?.getElementsByTagName('a');
 
-    if (!card) {
-        console.log("cards not found");
-        return;
-    };
-
-    for (let i = 0; i < card.length; i++ ) {
-        const textValue: string = card[i]?.innerText || card[i]?.textContent
-        if (textValue.toUpperCase().indexOf(userSearch) > -1) {
-            card[i].style.display = "";
-        } else {
-            card[i].style.display = "none";
-        }
-    };
+    Array.from(card as HTMLCollectionOf<HTMLElement>).forEach((cardValue) => {
+        const textValue = (cardValue.innerText || cardValue.textContent) ?? "Not found."
+        cardValue.style.display = textValue.toUpperCase().includes(userSearch)
+            ? ""
+            : "none"
+    });
 }

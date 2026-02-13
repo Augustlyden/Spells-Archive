@@ -23,7 +23,7 @@ export interface SpellDetailsOverview extends SpellBookOverview{
 const userFriendlyErrors = {
     404: "We couldn't find what you were looking for. We are working on fixing the issue.",
     500: "There seems to be a temporary error on our end. Please try again later.",
-    network_error: "Failed to connect to the source. Check your network connection and try again.",
+    networkError: "Failed to connect to the source. Check your network connection and try again.",
 }
 
 const wizardLoader = document.getElementById('loading-wizard-gif-container')
@@ -42,7 +42,7 @@ export async function fetchSpellBook(): Promise<SpellBookOverview[]> {
         if (error instanceof Error) {
             console.error('Error fetching spell book:', error.message);
             const finalMessage = error.name === 'TypeError' 
-                ? userFriendlyErrors.network_error
+                ? userFriendlyErrors.networkError
                 : error.message;
             document.body.innerHTML = `
             <div class="error-container">
@@ -72,7 +72,7 @@ export async function fetchSpellDetails(): Promise<SpellDetailsOverview> {
         if (error instanceof Error) {
             console.error('Error fetching spell details:', error);
             const finalMessage = error.name === 'TypeError' 
-                ? userFriendlyErrors.network_error
+                ? userFriendlyErrors.networkError
                 : error.message;
             document.body.innerHTML = `
             <div class="error-container">
