@@ -25,10 +25,9 @@ jobs:
             - name: Compile and Prepare
               run: |
                 npx tsc
-                echo "--- Innehåll i projekt-roten ---"
-                ls -F
-                echo "--- Innehåll i dist-mappen ---"
-                ls -R dist/ || echo "Dist-mappen hittades inte!"
+                cp index.html dist/
+                cp spell.html dist/
+                cp -r css dist/
 
             - name: Deploy to Github Pages
               uses: JamesIves/github-pages-deploy-action@v4
