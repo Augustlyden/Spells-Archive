@@ -1,50 +1,55 @@
-import { fetchSpellDetails } from './api.js';
+import {fetchSpellDetails, type SpellDetailsOverview} from './api.js';
+
 async function loadSpellDetails() {
     const spellDetails = await fetchSpellDetails();
     displaySpellDetails(spellDetails);
-}
-;
-document.addEventListener('DOMContentLoaded', loadSpellDetails);
+};
+
+document.addEventListener('DOMContentLoaded', loadSpellDetails)
+
 class SpellDetailsExeptions {
-    data;
-    constructor(data) {
-        this.data = data;
-    }
-    get concentration() {
+    constructor(private data: SpellDetailsOverview) {}
+        
+    get concentration(): string {
         return this.data.concentration === true
             ? "Yes"
-            : "No";
-    }
-    ;
-    get material() {
-        return this.data.material ?? "No materials needed";
-    }
-    ;
-    get higherLevel() {
-        return this.data.higher_level?.length === 0
+            : "No"
+    };
+
+    get material(): string {
+        return this.data.material ?? "No materials needed"
+    };
+
+    get higherLevel(): string {
+        return this.data.higher_level?.length === 0 
             ? ""
-            : `<p><span>Casting at higher levels</span> <br>${this.data.higher_level}</p>`;
-    }
-    ;
-    get level() {
+            : `<p><span>Casting at higher levels</span> <br>${this.data.higher_level}</p>`
+    };
+
+    get level(): string | number {
         return this.data.level === 0
             ? "Cantrip"
-            : this.data.level;
+            : this.data.level
     }
-    get components() { return this.data.components.join(" "); }
-    ;
-    get desc() { return this.data.desc.join(" "); }
-    ;
-}
-;
-async function displaySpellDetails(spellDetails) {
-    let spellCardContent = document.getElementById('spell-card-content');
+
+    get components() {return this.data.components.join(" ")};
+    get desc() {return this.data.desc.join(" ")};
+    };
+
+
+async function displaySpellDetails(spellDetails: SpellDetailsOverview) {
+    
+    let spellCardContent = document.getElementById('spell-card-content')
+
     if (!spellCardContent) {
         console.log("spell-card-content element not found");
         return;
     }
+
     const exception = new SpellDetailsExeptions(spellDetails);
+
     document.title = `${spellDetails.name}`;
+
     spellCardContent.innerHTML = `
         <h2 id="spell-title">${spellDetails.name}</h2>
         <article class="spell-card-details">

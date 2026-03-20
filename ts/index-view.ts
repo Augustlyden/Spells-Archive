@@ -1,20 +1,23 @@
+import type { SpellBookOverview } from "./api.js";
+
 class SpellExeptions {
-    data;
-    constructor(data) {
-        this.data = data;
-    }
-    get level() {
+    constructor(private data: SpellBookOverview) {}
+
+    get level(): string | number {
         return this.data.level === 0
             ? "Cantrip"
-            : "level " + this.data.level;
+            : "level " + this.data.level
     }
 }
-export function displaySpells(spellBook) {
+
+export function displaySpells(spellBook: SpellBookOverview[]) {
     let spellPage = document.getElementById('spell-page-content');
+
     if (!spellPage) {
         console.log("spell-page- element not found");
         return;
     }
+
     if (spellBook.length === 0) {
         spellPage.innerHTML = `
             <div id="no-results">
@@ -24,9 +27,12 @@ export function displaySpells(spellBook) {
         `;
         return;
     }
-    let spellPageContent = "";
+
+    let spellPageContent = ""
+
     spellBook.forEach(spell => {
         const exception = new SpellExeptions(spell);
+
         spellPageContent += `
         <a data-id="${spell.name}" href="spell.html?index=${spell.index}">
             <article class="spell-card">
@@ -35,25 +41,29 @@ export function displaySpells(spellBook) {
             </article>
         </a> 
         `;
-    });
-    spellPage.innerHTML = spellPageContent;
-}
-;
+    }); 
+
+    spellPage.innerHTML = spellPageContent
+};
+
 const upButton = document.getElementById('up-button');
+
 upButton?.addEventListener('click', topFunction);
-window.onscroll = function () { scrollFunction(); };
+window.onscroll = function() {scrollFunction()};
+
 function scrollFunction() {
     if (!upButton) {
         console.log("up-button element not found");
         return;
     }
+
     if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
         upButton.style.display = "block";
-    }
-    else {
+    } else {
         upButton.style.display = "none";
     }
 }
+
 function topFunction() {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;

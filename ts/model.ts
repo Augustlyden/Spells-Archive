@@ -1,9 +1,8 @@
 export class SpellModel {
-    spells;
-    level;
+    spells!: any[];
+    level!: any[];
     constructor() {
         this.spells = [];
         this.level = [];
     }
-}
-;
+};
