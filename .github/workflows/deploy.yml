@@ -25,7 +25,7 @@ jobs:
             - name: Compile and Prepare
               run: |
                 npx tsc
-                cp ts/*.js dist
+                cp ts/*.js dist/
                 cp index.html dist/
                 cp spell.html dist/
                 cp -r css dist/
