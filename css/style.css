@@ -128,9 +128,6 @@ a {
     gap: 20px;
 }
 
-/* Promp 1: Make the dd and dt elements in the dl with class spell-details align with each other using grid
-and a gap of 40px */
-
 .spell-details {
     background-color: var(--secondary-color);
     border-radius: var(--border-radius);
@@ -210,6 +207,12 @@ span {
 
 .hidden {
     display: none;
+}
+
+#no-result {
+    color: var(--primary-color);
+    grid-column: 1 / -1;
+    text-align: center;
 }
 
 #up-button {

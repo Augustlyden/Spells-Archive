@@ -18,6 +18,16 @@ export function displaySpells(spellBook: SpellBookOverview[]) {
         return;
     }
 
+    if (spellBook.length === 0) {
+        spellPage.innerHTML = `
+            <div id="no-result">
+                <img class="error-wizard-gif" src="img/loading-screen-wizard.gif" alt="reading wizard in candle light">
+                <p>No spells matches the search. Please try a different spell or level.</p>
+            </div>
+        `;
+        return;
+    }
+
     let spellPageContent = ""
 
     spellBook.forEach(spell => {
