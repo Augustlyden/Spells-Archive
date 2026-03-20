@@ -7,7 +7,7 @@ async function loadSpellDetails() {
 
 document.addEventListener('DOMContentLoaded', loadSpellDetails)
 
-class spellDetailsExeptions {
+class SpellDetailsExeptions {
     constructor(private data: SpellDetailsOverview) {}
         
     get concentration(): string {
@@ -26,6 +26,12 @@ class spellDetailsExeptions {
             : `<p><span>Casting at higher levels</span> <br>${this.data.higher_level}</p>`
     };
 
+    get level(): string | number {
+        return this.data.level === 0
+            ? "Cantrip"
+            : this.data.level
+    }
+
     get components() {return this.data.components.join(" ")};
     get desc() {return this.data.desc.join(" ")};
     };
@@ -40,7 +46,7 @@ async function displaySpellDetails(spellDetails: SpellDetailsOverview) {
         return;
     }
 
-    const exception = new spellDetailsExeptions(spellDetails);
+    const exception = new SpellDetailsExeptions(spellDetails);
 
     document.title = `${spellDetails.name}`;
 
@@ -49,7 +55,7 @@ async function displaySpellDetails(spellDetails: SpellDetailsOverview) {
         <article class="spell-card-details">
             <dl class="spell-details">
                 <dt>Level</dt>
-                <dd>${spellDetails.level}</dd>
+                <dd>${exception.level}</dd>
                 <dt>School</dt>
                 <dd>${spellDetails.school.name}</dd>
                 <dt>Range</dt>

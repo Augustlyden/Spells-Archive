@@ -1,8 +1,18 @@
 import type { SpellBookOverview } from "./api";
 
+class SpellExeptions {
+    constructor(private data: SpellBookOverview) {}
+
+    get level(): string | number {
+        return this.data.level === 0
+            ? "Cantrip"
+            : "level " + this.data.level
+    }
+}
+
 export function displaySpells(spellBook: SpellBookOverview[]) {
     let spellPage = document.getElementById('spell-page-content');
-    
+
     if (!spellPage) {
         console.log("spell-page- element not found");
         return;
@@ -11,11 +21,13 @@ export function displaySpells(spellBook: SpellBookOverview[]) {
     let spellPageContent = ""
 
     spellBook.forEach(spell => {
+        const exception = new SpellExeptions(spell);
+
         spellPageContent += `
         <a data-id="${spell.name}" href="spell.html?index=${spell.index}">
             <article class="spell-card">
                 <h2>${spell.name}</h2>
-                <p>Level ${spell.level}</p> 
+                <p>${exception.level}</p> 
             </article>
         </a> 
         `;

@@ -8,6 +8,7 @@
     --background-color: #f8f4ed;
     --text-color: #666666;
     --border-radius: 4px;
+    --primary-font: "Amarante", serif;
     scrollbar-color: var(--primary-color) var(--secondary-color);
 }
 
@@ -15,7 +16,7 @@ body {
     background-color: var(--background-color);
     margin: 0;
     padding: 20px;
-    font-family: "Amarante", serif;
+    font-family: var(--primary-font);
 }
 
 h1, #spell-title {
@@ -49,25 +50,24 @@ h1 {
 }
 
 #search-input::placeholder {
-    font-family: "Amarante", serif;
+    font-family: var(--primary-font);
 }
 
 #search-input:focus::placeholder {
     color: var(--primary-color);
 }
 
-#search-button {
-    background-color: var(--primary-color);
-    color: var(--secondary-color);
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
+select {
+    font-family: var(--primary-font);
+    color: var(--primary-color);
+    background-color: var(--secondary-color);
     border-radius: var(--border-radius);
+    border: 1px solid var(--primary-color);
 }
 
-#search-button:hover {
-    background-color: var(--secondary-color);
-    color: var(--primary-color);
+select:focus {
+    outline: none;
+    border: 2px solid var(--primary-color);
 }
 
 a {

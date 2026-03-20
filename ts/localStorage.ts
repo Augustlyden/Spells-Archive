@@ -1,12 +1,22 @@
 const search = (document.getElementById('search-input') as HTMLInputElement);
+const levelFilter = (document.getElementById('level-filter') as HTMLSelectElement)
 
 export function saveSearchInput() {
     localStorage.setItem('searchInput',search.value);
 };
 
 export function retrieveSearchInput() {
-    const savedValue = localStorage.getItem('searchInput');
-    if (savedValue !== null) {
-        search.value = savedValue;
+    const savedSearchValue = localStorage.getItem('searchInput');
+    if (savedSearchValue !== null) {
+        search.value = savedSearchValue;
     };
 };
+
+export function saveLevelFilter() {
+    localStorage.setItem('levelFilter', levelFilter.value)
+}
+
+export function retrieveLevelFilter() {
+    const savedFilterValue = localStorage.getItem('levelFilter');
+    levelFilter.value = savedFilterValue || "all"
+}
