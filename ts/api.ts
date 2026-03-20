@@ -1,4 +1,5 @@
 export interface SpellBookOverview {
+    results: string[];
     index: string;
     name: string;
     level: number;
@@ -6,6 +7,7 @@ export interface SpellBookOverview {
 
 export interface APIReference {
     name: string;
+    results: SpellBookOverview[];
 };
 
 export interface SpellDetailsOverview extends SpellBookOverview {
@@ -34,7 +36,8 @@ const userFriendlyErrors: ErrorMessages = {
 
 const wizardLoader = document.getElementById('loading-wizard-gif-container');
 
-export async function fetchSpellBook(): Promise<SpellBookOverview[]> {
+
+export async function fetchSpellBook(): Promise<APIReference> {
     try {
         wizardLoader?.classList.toggle('hidden')
         const response = await fetch('https://www.dnd5eapi.co/api/2014/spells');
@@ -43,10 +46,10 @@ export async function fetchSpellBook(): Promise<SpellBookOverview[]> {
             throw new Error(message);
         } 
         const spellData = await response.json();   
-        return spellData.results;
+        return spellData;
     } catch (error) {
         if (error instanceof Error) {
-            console.error('Error fetching spell book:', error.message);
+            console.error('Error fetching spell book:', error.message, error.name);
             const finalMessage = error.name === 'TypeError' 
                 ? userFriendlyErrors.networkError
                 : error.message;

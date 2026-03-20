@@ -1,61 +1,27 @@
 import { fetchSpellBook, type SpellBookOverview } from './api.js';
-import { saveSearchInput } from './localStorage.js';
-import { retrieveSearchInput } from './localStorage.js';
+import { saveSearchInput, retrieveSearchInput } from './localStorage.js';
 import { searchSpell } from "./filter.js";
+import { SpellModel } from './model.js';
+import { displaySpells } from './spell-view.js';
+
+let model = new SpellModel();
 
 async function loadSpellBook() {
-    const spellBook = await fetchSpellBook();
-    displaySpells(spellBook);
+    let spellBook = await fetchSpellBook();
 
+    model.spells = spellBook.results
+    displaySpells(model.spells);
     retrieveSearchInput();
 
-    searchSpell();
+    searchSpell(model.spells);
 };
-document.addEventListener('DOMContentLoaded', loadSpellBook);
+/* document.addEventListener('DOMContentLoaded', loadSpellBook); */
 
-function displaySpells(spellBook: SpellBookOverview[]) {
-    let spellPageContent = document.getElementById('spell-page-content');
-
-    if (!spellPageContent) {
-        console.log("spell-page-content element not found");
-        return;
-    }
-
-    spellBook.forEach(spell => {
-        spellPageContent.innerHTML += `
-        <a data-id="${spell.name}" href="spell.html?index=${spell.index}">
-            <article class="spell-card">
-                <h2>${spell.name}</h2>
-                <p>Level ${spell.level}</p> 
-            </article>
-        </a> 
-        `;
-    }); 
-};
 
 const search = document.getElementById('search-input');
-search?.addEventListener('input', searchSpell);
+search?.addEventListener('input', () =>{
+    searchSpell(model.spells);
+});
 search?.addEventListener('input', saveSearchInput);
 
-const upButton = document.getElementById('up-button');
-
-upButton?.addEventListener('click', topFunction);
-window.onscroll = function() {scrollFunction()};
-
-function scrollFunction() {
-    if (!upButton) {
-        console.log("up-button element not found");
-        return;
-    }
-
-    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-        upButton.style.display = "block";
-    } else {
-        upButton.style.display = "none";
-    }
-}
-
-function topFunction() {
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
-}
+loadSpellBook()

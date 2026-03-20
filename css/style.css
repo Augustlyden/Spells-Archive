@@ -30,14 +30,9 @@ h1 {
 
 #search-container {
     display: flex;
+    column-gap: 5px;
     justify-content: center;
     margin-bottom: 30px;
-}
-
-label {
-    color: var(--primary-color);
-    margin: 10px 5px;
-    font-size: smaller;
 }
 
 #search-input {
