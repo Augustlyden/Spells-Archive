@@ -209,7 +209,7 @@ span {
     display: none;
 }
 
-#no-result {
+#no-results {
     color: var(--primary-color);
     grid-column: 1 / -1;
     text-align: center;

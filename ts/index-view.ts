@@ -20,7 +20,7 @@ export function displaySpells(spellBook: SpellBookOverview[]) {
 
     if (spellBook.length === 0) {
         spellPage.innerHTML = `
-            <div id="no-result">
+            <div id="no-results">
                 <img class="error-wizard-gif" src="img/loading-screen-wizard.gif" alt="reading wizard in candle light">
                 <p>No spells matches the search. Please try a different spell or level.</p>
             </div>
