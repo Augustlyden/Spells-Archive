@@ -25,12 +25,9 @@ jobs:
             - name: Compile and Prepare
               run: |
                 npx tsc
-                cp index.html dist/
-                cp spell.html dist/
-                cp -r css dist/
 
             - name: Deploy to Github Pages
               uses: JamesIves/github-pages-deploy-action@v4
               with:
-                folder: dist
+                folder: .
                 branch: gh-pages
