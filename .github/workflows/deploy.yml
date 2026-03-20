@@ -25,12 +25,15 @@ jobs:
             - name: Compile and Prepare
               run: |
                 npx tsc
+                touch .nojekyll 
+                ls -R dist/
 
             - name: Deploy to Github Pages
               uses: JamesIves/github-pages-deploy-action@v4
               with:
                 folder: .
                 branch: gh-pages
+                force: true
                 clean: true
                 git-config-name: github-actions[bot]
                 git-config-email: github-actions[bot]@://github.com
