@@ -25,6 +25,7 @@ jobs:
             - name: Compile and Prepare
               run: |
                 npx tsc
+                ls -R dist/
 
             - name: Deploy to Github Pages
               uses: JamesIves/github-pages-deploy-action@v4
