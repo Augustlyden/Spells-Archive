@@ -25,10 +25,11 @@ jobs:
             - name: Compile and Prepare
               run: |
                 npx tsc
-                cp ts/*.js dist/
+                mv dist/ts/*.js dist/
                 cp index.html dist/
                 cp spell.html dist/
                 cp -r css dist/
+                rm -rf dist/ts/
 
             - name: Deploy to Github Pages
               uses: JamesIves/github-pages-deploy-action@v4

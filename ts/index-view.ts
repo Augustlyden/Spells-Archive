@@ -1,4 +1,4 @@
-import type { SpellBookOverview } from "./api";
+import type { SpellBookOverview } from "./api.js";
 
 class SpellExeptions {
     constructor(private data: SpellBookOverview) {}
