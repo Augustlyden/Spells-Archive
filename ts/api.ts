@@ -55,7 +55,7 @@ export async function fetchSpellBook(): Promise<APIReference> {
                 : error.message;
             document.body.innerHTML = `
             <div class="error-container">
-                <img class="error-wizard-gif" src="img/loading-screen-wizard.gif" alt="reading wizard in candle light">
+                <img class="error-wizard-gif" src="/loading-screen-wizard.gif" alt="reading wizard in candle light">
                 <p class="error-message">Sorry, we couldn't summon the archive at this time. <br> ${finalMessage}</p>
             </div>
             `;
@@ -85,7 +85,7 @@ export async function fetchSpellDetails(): Promise<SpellDetailsOverview> {
                 : error.message;
             document.body.innerHTML = `
             <div class="error-container">
-                <img class="error-wizard-gif" src="img/loading-screen-wizard.gif" alt="reading wizard in candle light">
+                <img class="error-wizard-gif" src="/loading-screen-wizard.gif" alt="reading wizard in candle light">
                 <p class="error-message">Sorry, we couldn't load the archive at this time. <br> ${finalMessage}</p>
             </div>
             `;
