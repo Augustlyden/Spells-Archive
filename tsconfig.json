@@ -2,7 +2,7 @@
   // Visit https://aka.ms/tsconfig to read more about this file
   "compilerOptions": {
     // File Layout
-    "rootDir": "./ts",
+    "rootDir": "./",
     "outDir": "./dist", 
 
     // Environment Settings
@@ -10,6 +10,11 @@
     "module": "esnext",
     "target": "esnext",
     "types": [],
+    "moduleResolution": "bundler",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
     // For nodejs:
     // "lib": ["esnext"],
     // "types": ["node"],
@@ -40,5 +45,7 @@
     "noUncheckedSideEffectImports": true,
     "moduleDetection": "force",
     "skipLibCheck": true,
-  }
+  },
+  "include": ["ts/**/*", "vite.config.ts"], // Inkludera din källkod OCH konfigurationen
+  "exclude": ["node_modules", "dist"]
 }

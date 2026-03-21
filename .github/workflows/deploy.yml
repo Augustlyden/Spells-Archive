@@ -22,16 +22,14 @@ jobs:
             - name: Install dependencies
               run: npm install
 
-            - name: Compile and Prepare
+            - name: Build project
               run: |
-                npx tsc
-                touch .nojekyll 
-                ls -R dist/
+                npm run build 
 
             - name: Deploy to Github Pages
               uses: JamesIves/github-pages-deploy-action@v4
               with:
-                folder: .
+                folder: dist
                 branch: gh-pages
                 force: true
                 clean: true
