@@ -4,11 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-  "dev": "vite",
-  "build": "tsc && vite build",
-  "preview": "vite preview"
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
   },
-
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Augustlyden/JS-Uppgift-Spells-Archive.git"
@@ -22,6 +21,7 @@
   },
   "homepage": "https://github.com/Augustlyden/JS-Uppgift-Spells-Archive#readme",
   "devDependencies": {
+    "@types/node": "^25.5.0",
     "typescript": "^5.9.3",
     "vite": "^8.0.1"
   }
